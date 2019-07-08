@@ -10,7 +10,7 @@ import (
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Print(time.Now())
-		fmt.Fprint(w, "hi2")
+		fmt.Fprint(w, "hi3")
 	})
 
 	log.Println("listening on :8181")
