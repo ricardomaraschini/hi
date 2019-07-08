@@ -6,4 +6,5 @@ RUN go build
 
 FROM fedora:latest
 COPY --from=0 /go/src/hi/hi .
+EXPOSE 8181
 CMD ["/hi"]  
