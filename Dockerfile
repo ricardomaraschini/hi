@@ -4,6 +4,6 @@ COPY main.go .
 COPY go.mod .
 RUN go build
 
-FROM ubi7-minimal
+FROM alpine:latest
 COPY --from=0 /go/src/hi/hi /
 CMD ["/hi"]  
