@@ -1,20 +1,18 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
-	"time"
 )
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		log.Print(time.Now())
-		fmt.Fprint(w, "hi5")
+		cn, ok := w.(http.CloseNotifier)
+		if !ok {
+			log.Fatal("don't support CloseNotifier")
+		}
+		<-cn.CloseNotify()
+		log.Printf("CloseNotifier is fired!")
 	})
-
-	log.Println("listening on :8181")
-	if err := http.ListenAndServe(":8181", nil); err != nil {
-		log.Fatal(err)
-	}
+	http.ListenAndServe(":8080", nil)
 }
