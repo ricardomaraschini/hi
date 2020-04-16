@@ -4,8 +4,8 @@ COPY main.go .
 COPY go.mod .
 RUN go build -o /tmp/hi
 
-FROM alpine
+FROM fedora:latest
 COPY --from=0 /tmp/hi /
-EXPOSE 8181
+EXPOSE 8080
 CMD ["/hi"]  
 
